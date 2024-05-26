@@ -1,0 +1,7 @@
+<app-customer-search-form class="m-2 border border-1" [customerTypes]="customerTypes" (onSubmit)="searchCustomers($event)"></app-customer-search-form>
+<app-customer-search-results *ngIf="customers" [embedded]="embedded" [customers]="customers" class="m-2 border border-1"
+(onBook)="book($event)" (onDelete)="deleteCustomer($event)"></app-customer-search-results>
+
+<div *ngIf="errors"  class="text-sm-start text-warning">{{errors|json}}</div>
+
+

@@ -1,0 +1,39 @@
+<div class="p-3">
+    
+        <table class="custom-table ">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Given Name</th>
+                    <th>Surname</th>
+                    <th>Passport No.</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Country</th>
+                    <th>Phone</th>
+                    <th>Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers">
+                    <td>{{customer.id}}</td>
+                    <td>{{customer.givenName}}</td>
+                    <td>{{customer.surname}}</td>
+                    <td>{{customer.passportNo}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.address}}</td>
+                    <td>{{customer.country}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.customerTypeName}}</td>
+                    <td>
+                        <a *ngIf="!embedded" class="btn btn-primary btn-sm" [routerLink]="['/CustomerEdit']" [queryParams]="{id: customer.id}">Edit</a> 
+                        <a *ngIf="!embedded" class="btn btn-primary btn-sm" [routerLink]="['/BookingList']" [queryParams]="{customerId: customer.id}">Booking History</a> 
+                        <a class="btn btn-primary btn-sm"(click)="bookCustomer(customer)">Make Booking</a>
+                        <a *ngIf="!embedded" class="btn btn-danger btn-sm" (click)="deleteCustomer(customer.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+</div>

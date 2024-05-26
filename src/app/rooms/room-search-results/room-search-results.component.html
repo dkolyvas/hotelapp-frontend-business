@@ -1,0 +1,27 @@
+<div>
+    <table class="table table-info table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Floor</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let room of rooms">
+                <td>{{room.id}}</td>
+                <td>{{room.code}}</td>
+                <td>{{room.floor}}</td>
+                <td>{{room.category}}</td>
+                <td>
+                    <a *ngIf="!embedded && (userType$|async)=='Admin'" class="btn btn-primary btn-sm" [routerLink]="['/RoomEdit']" [queryParams]="{id: room.id}">View/Edit</a> 
+                    <a *ngIf="!embedded" class="btn btn-primary btn-sm" [routerLink]="['/BookingList']" [queryParams]="{roomId: room.id}">Booking History</a>
+                    <a class="btn btn-primary btn-sm" (click)="selectRoomForBooking(room)">Make Booking</a>
+                    <a *ngIf="!embedded && (userType$|async)=='Admin'" class="btn btn-danger btn-sm" (click)="deleteRoom(room.id)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

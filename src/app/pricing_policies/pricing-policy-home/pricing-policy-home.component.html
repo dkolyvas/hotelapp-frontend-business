@@ -1,0 +1,60 @@
+<div  class="container-md">
+    <h2>Pricing Policies</h2>
+    <div class="z-0">
+        <h3>Please select one of the following</h3>
+        <form [formGroup]="form">
+            <div class="row mb-3">
+                <div class="col-2">
+                    <label for="roomCategory" class="form-label" >Select Room Category</label>
+                </div>
+                <div class="col-3">
+                    <select name="roomCategory" id="roomCategory" formControlName="roomCategory" class="form-select" (change)="selectRoomCategory()">
+                        <option *ngFor="let category of roomCategories" [value]="category.id">{{category.description}}</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <label for="customerType" class="form-label" >Select Customer Type</label>
+                </div>
+                <div class="col-3">
+                    <select name="customerType" id="customerType" formControlName="customerType" class="form-select" (change)="selectCustomerType()">
+                        <option *ngFor="let type of customerTypes" [value]="type.id">{{type.name}}</option>
+                    </select>
+                </div>
+                
+            </div>
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary" (click)="selectAdd()">Add new</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="editMode" class="z-1 position-fixed top-25 start-25 w-75">
+        <app-pricing-policy-edit [customerTypes]="customerTypes" [roomCategories]="roomCategories" [editPolicy]="editPolicy"
+         [errors]="editErrors" (onCancel)="cancelEdit()" (onSubmit)="submitEdit($event)">
+        </app-pricing-policy-edit>
+    </div>
+    <div *ngIf="pricingPolicies" class="z-0">
+        <table class="table table-info table-striped">
+            <thead>
+                <tr>
+                    <th>Room Category</th>
+                    <th>Customer Type</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let policy of pricingPolicies">
+                    <td>{{policy.roomCategoryDescription}}</td>
+                    <td>{{policy.customerTypeDescription}}</td>
+                    <td>{{policy.specification}}</td>
+                    <td>{{policy.price |currency: "€"}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" (click)="selectUpdate(policy.id)">Edit</a>
+                        <a class="btn btn-sm btn-danger" (click)="deletePolicy(policy.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

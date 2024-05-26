@@ -1,0 +1,41 @@
+<div class="p-3 container-md">
+    <h3>{{updateMode?"Update":"Add New"}} Room</h3>
+    <div class="m-3 border border-2 border-secondary">
+        <form [formGroup]="form">
+            <div class="row invisible">
+                <input type="text" name="id" formControlName="id">
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label for="code" class="form-label">Code</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" id="code" name="code" formControlName="code">
+                </div>
+                <div class="col-2">
+                    <label for="floor" class="form-label">Floor</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" id="floor" name="floor" formControlName="floor">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label for="category" class="form-label">Category</label>
+                </div>
+                <div class="col-3">
+                    <select name="category" id="category" formControlName="categoryId" class="form-select">
+                        <ng-container *ngIf="roomCategories">
+                            <option *ngFor="let category of roomCategories" [value]="category.id">{{category.description}} -{{category.personsNumber}} persons</option>
+                        </ng-container>
+                    </select>
+                </div>
+                <button class="col-2 btn btn-primary" type="button"(click)="submit()">Submit</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<div *ngIf="errors" class="text-sm-start text-warning">
+    {{errors |json}}
+</div>

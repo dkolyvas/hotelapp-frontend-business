@@ -1,0 +1,62 @@
+<div class="border-1 border-secondary mb-3">
+    <div>
+        <h3>Search Customers</h3>
+    </div>
+    <div>
+        <form [formGroup]="form">
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label for="givenName" class="form-label">Given Name</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" name="givenName" id="givenName" formControlName="givenName">  
+                </div>
+                <div class="col-2">
+                    <label for="surname" class="form-label">Surname</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" name="surname" formControlName="surname" id="surname">
+                </div>
+                <div class="col-2">
+                    <label for="passportNo" class="form-label">Passport No.</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" name="passportNo" formControlName="passportNo" id="passportNo">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label for="email" class="form-label">Email</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" name="email" id="email" formControlName="email">
+                </div>
+                <div class="col-2">
+                    <label for="phone" class="form-label">Phone</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" name="phone" id="phone" formControlName="phone">
+                </div>
+                <div class="col-2">
+                    <label for="country" class="form-label">Country</label>
+                </div>
+                <div class="col-2">
+                    <input type="text" class="form-control" name="country" id="country" formControlName="country">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <label for="type" class="form-label">Customer Type</label>
+                </div>
+                <div class="col-2">
+                    <select class="form-select" id="type" name="customerType" formControlName="customerType">
+                       <ng-container *ngIf="customerTypes">
+                            <option *ngFor="let type of customerTypes" [value]="type.id">{{type.name}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="button" (click)="submitForm()">Search</button>
+        </form>
+    </div>
+</div>

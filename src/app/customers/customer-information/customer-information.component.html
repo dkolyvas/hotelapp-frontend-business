@@ -1,0 +1,61 @@
+<div class="container-md p-3">
+    <h3>Showing Customer Statistics</h3>
+    <div class="my-3">
+        <h4 class="mb-2">Select period</h4>
+        <form [formGroup]="form">
+
+            <div class="row">
+                <div class="col-2">
+                    <label for="dateFrom" class="form-label">From</label>
+                </div>
+                <div class="col-3">
+                    <input type="date" class="form-control" id="dateFrom" name="dateFrom" formControlName="dateFrom">
+                </div>
+                <div class="col-2">
+                    <label for="dateTo" class="form-label">To</label>
+                </div>
+                <div class="col-3">
+                    <input type="date" class="form-control" id="dateTo" name="dateTo" formControlName="dateTo">
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-primary" type="button" (click)="submitSearch()">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="mb-3" *ngIf="customerStatistics">
+        <table class="table table-info table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Country</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Total Expenditure</th>
+                    <th>Totel Days Booked</th>
+                    <th>Customer Type</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customerStatistics">
+                    <td>{{customer.givenName}}</td>
+                    <td>{{customer.surname}}</td>
+                    <td>{{customer.country}}</td>
+                    <td>{{customer.email}}</td>
+                    <td>{{customer.phoneNo}}</td>
+                    <td>{{customer.expenditure|currency: "€"}}</td>
+                    <td>{{customer.days}}</td>
+                    <td>{{customer.customerType}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" [routerLink]="['/CustomerEdit']" [queryParams]="{id: customer.id, dateFrom: dateFrom, dateTo: dateTo}">Edit Customer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-sm-start text-danger" *ngIf="errors">
+        {{errors|json}}
+    </div>
+</div>

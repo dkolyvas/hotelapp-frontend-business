@@ -1,0 +1,44 @@
+<div class="container-md">
+    <h3> {{booking?"Modify": "Make"}} Booking</h3>
+    <div *ngIf="errors" class="text-sm-start text-warning">
+        {{errors |json}}
+    </div>
+    <div *ngIf="message" class="text-sm-start text-success">
+        {{message}}
+    </div>
+    <div *ngIf="room && dateFrom && dateTo" class="mb-3">
+        <p>
+            Selected Room: {{room.code}}
+        </p>
+        <p>
+            From {{dateFrom| date: "dd//MM/yyyy"}} To {{dateTo | date: "dd/MM/yyyy"}}
+        </p>
+        <button type="button" class="btn btn-primary" (click)="resetRoom()">Change Room</button>
+     </div>
+     <div *ngIf="customer" class="mb-3">
+        <p>
+            Selected Customer: {{customer.givenName}} {{customer.surname}} 
+        </p>
+        <button type="button" class="btn btn-primary" (click)="resetCustomer()">Change Customer</button>
+    </div>
+    <div *ngIf="pricingPolicies" class="mb-3">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-3">
+                    <label for="policy" class="form-label">Select Pricing Policy</label>
+                </div>
+                <div class="col-3">
+                    <select name="pricingPolicy" id="policy" formControlName="pricingPolicy" class="form-select">
+                        <option *ngFor="let policy of pricingPolicies" [value]="policy.id">{{policy.specification}}, &#40;{{policy.price|currency:"€"}}&#41;</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="submit()">{{booking?"Update":"Make"}} Booking</button>
+        </form>
+    </div>
+    <app-customer-search-container [embedded]="true" *ngIf="!customer" class="mb-3" (onBook)="selectCustomer($event)">
+    </app-customer-search-container>
+    <app-room-search-container [embedded]="true" *ngIf="!room || !dateFrom || !dateTo" (onBook)="selectRoom($event)">
+    </app-room-search-container>
+
+</div>

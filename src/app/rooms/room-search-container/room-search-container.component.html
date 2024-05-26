@@ -1,0 +1,15 @@
+<div class="container-md">
+        <div class="z-0"> 
+                <app-room-search-form (onSubmitSearch)="searchRooms($event)" (onSubmitGet)="getRoomByCode($event)" >
+                </app-room-search-form>
+        </div>
+        <div *ngIf="bookingRoom" class="z-1 position-sticky top-50 start-50 w-75" >
+                <app-confirm-booking-dates [selectedRoom]="bookingRoom" [roomUnavailable]="!roomAvailable" [period]="bookingPeriod" (onSelectDates)="bookRoom($event)" (onCancelSelect)="cancelBooking()"></app-confirm-booking-dates>
+        </div>
+        <div class="z-0">
+                <app-room-search-results  *ngIf="rooms" [rooms]="rooms" [embedded]="embedded" (onRoomSelectForBooking)="selectRoomForBooking($event)"
+                (onRoomDelete)="deleteRoom($event)" [userType$]="userType$">
+                </app-room-search-results>
+        </div>
+        <div class="text-sm-start text-dangerv">{{errors|json}}</div>
+</div>

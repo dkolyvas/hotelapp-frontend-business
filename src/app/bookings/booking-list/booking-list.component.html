@@ -1,0 +1,57 @@
+<div class="mb-2">
+    <h3>Showing Bookings for {{customerId?"Customer "+ customerName:""}}{{roomId?"Room " + roomCode: ""}}</h3>
+    <h4>Selected period:</h4>
+</div>
+<div class="border border-secondary border-1 row mb-2">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="col-2">
+                <label for="dateFrom" class="form-label">Start Date</label>
+            </div>
+            <div class="col-2">
+                <input type="date" class="form-control" id=" dateFrom" name="dateFrom" formControlName="dateFrom">
+            </div>
+            <div class="col-2">
+                <label for="dateTo" class="form-label">End Date</label>
+            </div>
+            <div class="col-2">
+                <input type="date" class="form-control" id=" dateTo" name="dateTo" formControlName="dateTo">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary" (click)="submitSearch()">Show</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <table class="table table-info table-striped">
+        <thead>
+            <tr>
+                <th>Room Code</th>
+                <th>Customer</th>
+                <th>Arrival Date</th>
+                <th>Departure Date</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let booking of bookings">
+                <td>{{booking.roomCode}}</td>
+                <td>{{booking.customerId}}, {{booking.customerName}} {{booking.customerSurname}}</td>
+                <td>{{booking.dateFrom| date:"dd/MM/yyyy"}}</td>
+                <td>{{booking.dateTo | date: "dd/MM/yyyy"}}</td>
+                <td>{{booking.price| currency:"€"}}</td>
+                <td>
+                    <a [routerLink]="['/BookingEdit']" [queryParams]="{bookingId: booking.id}" class="btn btn-sm btn-primary">Modify</a>
+                    <a (click)="canceBooking(booking.id)" class="btn btn-sm btn-danger">Cancel</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="errors" class="text-sm-start text-danger">
+    {{errors|json}}
+</div>
+
+

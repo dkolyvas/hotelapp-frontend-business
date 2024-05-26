@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+
+@font-face {
+    font-family: ubunt;
+    src: url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap');
+}
+
+body{
+    font-family: ubunt;
+}
+
+.foreground {
+    background-color:rgb(123, 0, 255);
+    color: white;
+    font-family: "Lato", sans-serif;;
+    
+
+}
+
+.link {
+    background-color:rgb(123, 0, 255);
+    color: white;
+    font-family: "Lato", sans-serif;;
+}
+
+.link:hover {
+    background-color: black;
+    color:white
+}
+.btn-primary{
+background-color:rgb(55, 7, 106);
+color: white;}
+
+.btn{
+    font-family: "Lato", sans-serif;;
+}
+
+.custom-table{
+    background-color:rgb(219, 177, 211);
+    padding: 15px, 15px;
+}
+
+.custom-table th{
+    background-color:rgb(123, 0, 255);
+    color: white;
+}
+
+.custom-table tr:nth-child(even){
+    background-color:rgb(168, 114, 171);
+}

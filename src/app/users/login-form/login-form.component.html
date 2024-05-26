@@ -1,0 +1,25 @@
+<div class="container-sm m-5 p-3 foreground">
+    <h3 class="mb-3">Login</h3>
+    <form [formGroup]="form">
+        <div class="row mb-2">
+            <div class="col-2">
+                <label for="username" class="form-label">Username</label>
+            </div>
+            <div class="col-3">
+                <input type="text" id="username" name="username" formControlName="username" class="form-control">
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-2">
+                <label for="password" class="form-label">Password</label>
+            </div>
+            <div class="col-3">
+                <input type="password" id="password" name="password" formControlName="password" class="form-control">
+            </div>
+        </div>
+        <button class="btn btn-primary" (click)="submit()">Login</button>
+    </form>
+    <div *ngIf="error" class="text-sm-start text-danger">
+        {{error}}
+    </div>
+</div>

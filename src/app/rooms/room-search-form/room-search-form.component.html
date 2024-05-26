@@ -1,0 +1,50 @@
+<div>
+    <h3>Search Rooms</h3>
+</div>
+<div class="mb-2 p-3 border border-2 border-secondary">
+    <h4>Get Room By Code</h4>
+    <form [formGroup]="getForm">
+        <div class="row">
+            <div class="col-2">
+                <label for="code" class="form-label">Code</label>
+            </div>
+            <div class="col-3">
+                <input type="text" class="form-control" name="code" id="code" formControlName="code">
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-primary" (click)="submitGet()">Get room</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="mb-2 p-3 border border-2 border-secondary">
+    <h4>Or search rooms by criteria</h4>
+    <form [formGroup]="searchForm">
+        <div class="row mb-1">
+            <div class="col-2">
+                <label for="personsNo" class="form-label">Number of Persons</label>
+            </div>
+            <div class="col-1">
+                <input type="text" class="form-control" id="personsNo" name="personsNo" formControlName="personsNo">
+            </div>
+            <div class="col-2">
+                <label for="dateFrom" class="form-label">Start Date</label>
+            </div>
+            <div class="col-2">
+                <input type="date" class="form-control" id="dateFrom" name="dateFrom" formControlName="dateFrom" >
+            </div>
+            <div class="col-2">
+                <label for="dateTo" class="form-label">End Date</label>
+            </div>
+            <div class="col-2">
+                <input type="date" class="form-control" id="dateTo" name="dateTo" formControlName="dateTo" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <button class="btn btn-primary" (click)="submitSearch()">Search</button>
+            </div>
+        </div>
+
+    </form>
+</div>

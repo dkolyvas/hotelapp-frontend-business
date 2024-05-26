@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg foreground">
+    <div class="container-fluid">
+        <span class="navbar-brand text-xl-start text-white">Hotel Management App</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 foreground">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active link text-white">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Customers
+                    </a>
+                    <ul class="dropdown-menu foreground">
+                        <li><a class="dropdown-item link" routerLink="/CustomerHome" >Search Customers</a></li>
+                        <li><a class="dropdown-item link" routerLink="/CustomerEdit" >Insert Customer</a></li>
+                        <li><a class="dropdown-item link" routerLink="/CustomerStatistics">Customer Statistics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Rooms
+                    </a>
+                    <ul class="dropdown-menu foreground">
+                        <li><a class="dropdown-item link" routerLink="/RoomHome">Search Rooms</a></li>
+                        <li *ngIf="(userType$|async)=='Admin'"><a class="dropdown-item link" routerLink="/RoomEdit">Add Room</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle link text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Parameters
+                    </a>
+                    <ul class="dropdown-menu foreground">
+                        <li><a class="dropdown-item link text-white" routerLink="/PricingPolicy">Pricing Policies</a></li>
+                        <li *ngIf="(userType$|async)=='Admin'"><a class="dropdown-item link" routerLink="/RoomCategory">Room Categories</a></li>
+                        <li *ngIf="(userType$|async)=='Admin'"><a class="dropdown-item link" routerLink="/CustomerType">Customer Types</a></li>
+                        <li *ngIf="(userType$|async)=='Admin'"><a class="dropdown-item link" routerLink="/UserManagement">Users</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" *ngIf="(isLoggedOn$|async)">
+                    <a routerLink="/ChangePassword" class="nav-link active link text-white">{{username$|async}}</a>
+                    
+                </li>
+                <li class="nav-item" *ngIf="(isLoggedOn$|async)">
+                    <a href="#" class="nav-link active link text-white" (click)="logout()">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
